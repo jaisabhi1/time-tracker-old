@@ -1,10 +1,13 @@
 pipeline {
-    agent any
-    stages {
-        stage('build') {
-            steps {
-                sh 'mvn --version'
-            }
-        }
+  agent any
+  tools {
+    maven 'localmaven'
+  }
+  stages {
+    stage('Build') {
+      steps {
+        sh 'mvn -B -DskipTests clean package'
+      }
     }
+  }
 }
